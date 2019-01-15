@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var one = '12345';
+    var two = ['1', '2', '3', '4', '5'];
+    var a = '1', b = '2', c = '3', d = '4', e = '5';
+
+    function arr1(arg) {
+        return Array.from(arg);
+    }
+    console.log('from str Array.from - ', arr1(one));
+
+    function arr2(arg) {
+        return [...arg];
+    }
+    console.log('from str - ', arr2(one));
+
+    function arr3(...arg) {
+        return arg;
+    }
+    console.log('from arg - ', arr3(a, b, c, d, e));
+
+    ////
+
+    function str3(args) {
+        return args.join();
+    }
+    console.log('from mas - ', str3(two));
+
+    function str2() {
+        return [].join.call(arguments);
+    }
+    console.log('from arg call - ', str2(a, b, c, d, e));
+
+    function str4() {
+        return [].join.apply(arguments);
+    }
+    console.log('from arg apply - ', str4(a, b, c, d, e));
+
+    function str1(...arg) {
+        return arg.join();
+    }
+    console.log('from mas - ', str1(two));
+    console.log('from arg - ', str1(a, b, c, d, e));
+
+    //// 1
+    function say(one, two, ...other) {
+        console.log(`${one} ${this.name} ${this.surname} ${two}  - ` + other);
+    }
+
+    let user = {
+        name: "John",
+        surname: "Dee"
+    };
+
+    say.apply(user, two);
+    say.call(user, ...two);
+
+    let func1 = say.bind(user, ...two); // binding
+    func1();
+    let func2 = say.bind(user, 10); // binding
+    func2(...two);
+
+    //// 2
+    let userName = {
+        firstName: "Ihor"
+    };
+
+    function func() {
+        console.log(this.firstName);
+    }
+
+    func(userName); //undefined
+    let bindUser = func.bind(userName);
+    bindUser();
+    func.apply(userName);
+    func.call(userName);
+
+    //// binding
+    let time = {
+        firstName: "John",
+        sayHi() {
+            console.log('binding - ', `Hello, ${this.firstName}!`);
+        }
+    };
+
+    setTimeout(time.sayHi.bind(time), 1000);
+
+    //// Currying
+    curry = (func) => (a) => (b) => func(a, b);
+    sum = (a, b) => a + b;
+
+    let carriedSum = curry(sum);
+
+    console.log('currying - ', carriedSum(1)(4) );
+
+
+
+
+
+</script>
+</body>
+</html>

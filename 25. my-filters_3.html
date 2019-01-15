@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var tasks = [
+        { 'name': 'Write for Envato Tuts+', 'duration': 120 },
+        { 'name': 'Work out', 'duration': 60 },
+        { 'name': 'Procrastinate on Duolingo', 'duration': 240 }
+    ];
+
+
+    /******/
+    var task_names1 = [];
+    for (var i = 0, max = tasks.length; i < max; i += 1) {
+        task_names1.push(tasks[i].name);
+    }
+    console.log('for', task_names1);
+
+    var task_names2 = [];
+    tasks.forEach(function (item) {
+        task_names2.push(item.name);
+    });
+    console.log('forEach', task_names2);
+
+    var task_names3 = tasks.map(function (item) {
+        return item.name
+    });
+    // var task_names3 = tasks.map(item => item.id);
+    console.log('map', task_names3);
+
+
+    /******/
+    var difficult_tasks1 = [];
+
+    tasks.forEach(function (task) {
+        if (task.duration >= 120) {
+            difficult_tasks1.push(task);
+        }
+    });
+    console.log('forEach', difficult_tasks1);
+
+    var difficult_tasks2 = tasks.filter(function (item) {
+        return item.duration >= 120;
+    });
+    // var difficult_tasks2 = tasks.filter((task) => task.duration >= 120 );
+    console.log('filter', difficult_tasks2);
+
+    /******/
+    var total_time1 = 0;
+    tasks.forEach(function (number) {
+        total_time1 += number.duration;
+    });
+    console.log('forEach', total_time1);
+
+    var total_time2 = tasks.reduce(function (previous, number) {
+        return previous + number.duration;
+    }, 0);
+    // var total_time2 = tasks.reduce((previous, number) => previous + number.duration );
+    console.log('reduce', total_time2);
+
+    /******/
+    var array_of_arrays = [[1, 2], [3, 4], [5, 6]];
+    var concatenated = array_of_arrays.reduce( function (previous, current) {
+        return previous.concat(current);
+    });
+    console.log(concatenated);
+
+
+</script>
+</body>
+</html>

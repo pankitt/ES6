@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var mass = ["Яблоко", "Апельсин", "Груша", "Яблоко", "Апельсин"];
+    var num = [1, 2, 3, 4, 5];
+    var arr = [
+        {fruit:"Яблоко", cool:true },
+        {fruit:"Апельсин", cool:false},
+        {fruit:"Груша", cool:true},
+        {fruit:"Слива", cool:false},
+        {fruit:"Яблоко", cool:true }
+    ];
+
+    /******/
+    var arr2 = {};
+
+    for (var key in arr) {
+        arr2[key] = arr[key];
+    }
+    console.log('key in arr - clone', arr2);
+
+    /******/
+    var massBad = {"Яблоко":true, "Апельсин":false, "Груша":false, "Яблоко":true, "Апельсин":true};
+    var arr3 = {};
+
+    for (var key in massBad) {
+        if(massBad[key] === true) {
+            arr3[key] = massBad[key];
+        }
+    }
+    console.log('key in arr - true', arr3);
+
+    /******/
+    var fruitTrue = arr.filter(function (name) {
+        return name.cool;
+    });
+    console.log('filter - true', fruitTrue);
+
+    /******/ /******/ /******/
+    var mass2 = [];
+
+    mass.forEach(function(i) {
+        mass2.push(i);
+    });
+    console.log('forEach', mass2);
+
+    /******/
+    var apple = mass.filter(function(val) {
+        return val === "Яблоко";
+    });
+    console.log('filter', apple);
+
+    /******/
+    var fruitMap = mass.map(function(name) {
+        return name;
+    });
+    console.log('map', fruitMap);
+
+    /******/
+    function isApple(val) {
+        return val === "Яблоко";
+    }
+    console.log('every Яблоко - ', mass.every(isApple));
+    console.log('some Яблоко - ', mass.some(isApple));
+
+    /******/
+    var result = num.reduce(function(item, current) {
+        return item + current;
+    }, 0);
+    console.log('reduce - ', result);
+
+</script>
+</body>
+</html>

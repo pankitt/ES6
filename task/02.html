@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        let sport_main = ['european-football', 'hockey', 'basketball'];
+        let sport_bit = ['baseball', 'cricket'];
+        let sport_power = ['american-football', 'rugby-union', 'rugby-league', 'australian-football'];
+
+        /*function showList(list) {
+            setTimeout(() => list.forEach(function (i) {
+                console.log(i);
+            }), 1000);
+        }*/
+
+        /*function show() {
+            return new Promise(function (resolve, reject) {
+                return resolve();
+            });
+        }*/
+
+        let showList = (list) => { for (let i of list) console.log(i) };
+        let promise = new Promise((resolve, reject) => resolve());
+
+        //show()
+        promise
+            .then(showList(sport_main))
+            .then(showList(sport_bit))
+            .then(showList(sport_power));
+    </script>
+</body>
+</html>

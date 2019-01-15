@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        class League {
+            constructor (title) {
+                this._title = title;
+            }
+
+            get title() {
+                return !this._title ? this.default() : this._title;
+            }
+            set title(value) {
+                this._title = value;
+            }
+
+            getSport() {
+                return 'Hockey';
+            }
+            default() {
+                return 'No League';
+            }
+
+            static names(...val) {
+                //console.log(...val);
+                for (let i in val) {
+                    console.log(val[i]._name);
+                }
+            }
+        }
+        class Command extends League {
+            constructor (title, name) {
+                super(title);
+                this._name = name;
+                console.log(`${this.title} - ${this._name}`);
+            }
+        }
+
+        let pp = new Command('NHL', 'Pittsburgh Penguins');
+        let fi = new Command('CHL', 'Frölunda Indians');
+        let sp = new Command('KHL', 'SKA Saint Petersburg');
+        let ah = new Command('', 'Anyang Halla');
+
+        console.log(ah.getSport());
+        League.names(pp, fi, sp, ah);
+    </script>
+</body>
+</html>

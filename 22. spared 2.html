@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr2;
+    let arr1 = {
+        a: 1,
+        b: 1,
+        c: {
+            x: {
+                aa: 1,
+                bb: 1
+            },
+            y: {
+                cc: 1,
+                dd: 1
+            },
+            substitutions: [
+                {a: 1, b: 1, c: 1},
+                {a: 2, b: 2, c: 2}
+            ],
+            test: [],
+        },
+        events: {
+            goals: [
+                {A: 1, B: 1},
+                {A: 1, B: 1},
+                {A: 1, B: 1}
+            ],
+            // cards: [
+            //     {A: 1, B: 1}
+            // ]
+        }
+    };
+    if (arr1.events.cards) {
+        arr2 = {
+            ...arr1,
+            b: 2,
+            c: {
+                ...arr1.c,
+                x: {
+                    ...arr1.c.x,
+                    zz: 2
+                },
+                substitutions: [...arr1.c.substitutions, {
+                    a: 3, b: 3, c: 3
+                }],
+            },
+            events: {
+                ...arr1.events,
+                cards: [ ...arr1.events.cards,
+                    {A: 1, B: 1},
+                    {A: 1, B: 1},
+                    {A: 1, B: 1}
+                ]
+            }
+        };
+    } else {
+        arr2 = {
+            ...arr1,
+            b: 2,
+            c: {
+                ...arr1.c,
+                x: {
+                    ...arr1.c.x,
+                    zz: 2
+                },
+                substitutions: [{
+                    a: 3, b: 3, c: 3
+                }],
+                test: [...arr1.c.test, {
+                    A: 1, B: 1
+                }]
+            },
+            events: {
+                ...arr1.events,
+                cards: [
+                    {Z: 1, X: 1},
+                ]
+            }
+        };
+    }
+
+    console.log(arr2);
+    console.log(arr2.c.substitutions[arr2.c.substitutions.length - 1].a);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        let map = new Map();
+
+        map.set('str', 'str1');
+        map.set(1, 'num1');
+        map.set(true, 'bool1');
+
+        for(let fruit of map.keys()) {
+          console.log(fruit);
+        }
+        for(let amount of map.values()) {
+          console.log(amount);
+        }
+        for(let entry of map) { // то же что и map.entries()
+          console.log(entry);
+        }
+
+
+
+
+
+        let set = new Set();
+
+        let vasya = {name: "Вася"};
+        let petya = {name: "Петя"};
+        let dasha = {name: "Даша"};
+
+        set.add(vasya);
+        set.add(petya);
+        set.add(dasha);
+        set.add(vasya);
+        set.add(petya);
+
+        console.log( set.size );
+        set.forEach( user => console.log(user.name ) );
+    </script>
+</body>
+</html>
